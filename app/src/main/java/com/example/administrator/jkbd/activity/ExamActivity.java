@@ -39,7 +39,7 @@ public class ExamActivity extends AppCompatActivity {
         tv0p2 = (TextView) findViewById(R.id.tv_op2);
         tv0p3 = (TextView) findViewById(R.id.tv_op3);
         tv0p4 = (TextView) findViewById(R.id.tv_op4);
-        //mImageView = (ImageView) findViewById(R.id.im_exam_image);
+        mImageView = (ImageView) findViewById(R.id.im_exam_image);
     }
 
     private void initData() {
