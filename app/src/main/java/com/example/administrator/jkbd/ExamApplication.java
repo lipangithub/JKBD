@@ -4,14 +4,12 @@ import android.app.Application;
 import android.util.Log;
 
 import com.example.administrator.jkbd.bean.Question;
-import com.example.administrator.jkbd.bean.all;
+import com.example.administrator.jkbd.bean.Result;
 import com.example.administrator.jkbd.bean.item;
 import com.example.administrator.jkbd.utils.OkHttpUtils;
 import com.example.administrator.jkbd.utils.ResultUtils;
 
 import java.util.List;
-
-import static com.example.administrator.jkbd.utils.ResultUtils.getListResultFromJson;
 
 /**
  * Created by 李攀 on 2017/6/30.
@@ -19,7 +17,7 @@ import static com.example.administrator.jkbd.utils.ResultUtils.getListResultFrom
 
 public class ExamApplication extends Application {
     item mitem;
-    List<Question>mExamList;
+    List<Question> mQuestionList;
     private static ExamApplication instance;
     @Override
     public void onCreate() {
@@ -61,11 +59,11 @@ public class ExamApplication extends Application {
 
                             @Override
                             public void onSuccess(String jsonStr) {
-                                all result = ResultUtils.getListResultFromJson(jsonStr);
+                                Result result = ResultUtils.getListResultFromJson(jsonStr);
                                 if(result!=null && result.getError_code()==0){
                                     List<Question> list=result.getQuestions();
                                     if (list!=null && list.size()>0){
-                                        mExamList=list;
+                                        mQuestionList =list;
                                     }
                                 }
                             }
@@ -90,11 +88,11 @@ public class ExamApplication extends Application {
         this.mitem = mitem;
     }
 
-    public List<Question> getmExamList() {
-        return mExamList;
+    public List<Question> getmQuestionList() {
+        return mQuestionList;
     }
 
-    public void setmExamList(List<Question> mExamList) {
-        this.mExamList = mExamList;
+    public void setmQuestionList(List<Question> mQuestionList) {
+        this.mQuestionList = mQuestionList;
     }
 }

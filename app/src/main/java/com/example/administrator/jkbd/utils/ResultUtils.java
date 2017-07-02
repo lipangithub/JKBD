@@ -2,6 +2,8 @@ package com.example.administrator.jkbd.utils;
 
 import android.util.Log;
 
+import com.example.administrator.jkbd.bean.Question;
+import com.example.administrator.jkbd.bean.Result;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -10,15 +12,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.administrator.jkbd.bean.Question;
-import com.example.administrator.jkbd.bean.all;
-
-
 
 public class ResultUtils {
     static String UTF_8 = "utf-8";
-    public static all getListResultFromJson(String jsonStr){
-        all result = new all();
+    public static Result getListResultFromJson(String jsonStr){
+        Result result = new Result();
         Log.e("Utils","jsonStr="+jsonStr);
         try {
             if(jsonStr==null || jsonStr.isEmpty() || jsonStr.length()<3)return null;
