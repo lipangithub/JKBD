@@ -121,6 +121,7 @@
             />
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/layout_03"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -143,6 +144,7 @@
             />
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/layout_04"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -169,21 +171,25 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <CheckBox
+            android:id="@+id/cb_01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="A"
             android:layout_marginLeft="15dp"/>
         <CheckBox
+            android:id="@+id/cb_02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="B"
             android:layout_marginLeft="15dp"/>
         <CheckBox
+            android:id="@+id/cb_03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="C"
             android:layout_marginLeft="15dp"/>
         <CheckBox
+            android:id="@+id/cb_04"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="D"
