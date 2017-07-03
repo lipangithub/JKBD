@@ -32,7 +32,7 @@ import static java.lang.System.load;
  */
 
 public class ExamActivity extends AppCompatActivity {
-    TextView tvExamInfo,tvExamTitle,tv0p1,tv0p2,tv0p3,tv0p4,tvLoad;
+    TextView tvExamInfo,tvExamTitle,tv0p1,tv0p2,tv0p3,tv0p4,tvLoad,tvNo;
     LinearLayout layoutLoading;
     ImageView mImageView;
     ProgressBar dialog;
@@ -81,6 +81,7 @@ public class ExamActivity extends AppCompatActivity {
         dialog= (ProgressBar) findViewById(R.id.load_dialog);
         tvExamInfo = (TextView) findViewById(R.id.tv_examinfo);
         tvExamTitle = (TextView) findViewById(R.id.tv_exam_title);
+        tvNo= (TextView) findViewById(R.id.tv_exam_no);
         tv0p1 = (TextView) findViewById(R.id.tv_op1);
         tv0p2 = (TextView) findViewById(R.id.tv_op2);
         tv0p3 = (TextView) findViewById(R.id.tv_op3);
@@ -103,10 +104,10 @@ public class ExamActivity extends AppCompatActivity {
                 if (item !=null){
                     showData(item);
                 }
-                List<Question> questionList = ExamApplication.getInstance().getmQuestionList();
-                if (questionList !=null ){
-                    showExam(questionList);
-                }
+
+
+                    showExam(biz.getExam());
+
             }else{
                 layoutLoading.setEnabled(true);
                 dialog.setVisibility(View.GONE);
@@ -117,17 +118,23 @@ public class ExamActivity extends AppCompatActivity {
 
     }
 
-    private void showExam(List<Question> questionList) {
-        Question question = questionList.get(0);
+    private void showExam(Question question) {
+        Log.e("showExam","showExam,exam="+question);
         if (question !=null){
+            tvNo.setText(biz.getExamIndex());
             tvExamTitle.setText(question.getQuestion());
             tv0p1.setText(question.getItem1());
             tv0p2.setText(question.getItem2());
             tv0p3.setText(question.getItem3());
             tv0p4.setText(question.getItem4());
-            Picasso.with(ExamActivity.this)
-                    .load(question.getUrl())
-                    .into(mImageView);
+            if (question.getUrl()!=null && !question.getUrl().equals("")) {
+                mImageView.setVisibility(View.VISIBLE);
+                Picasso.with(ExamActivity.this)
+                        .load(question.getUrl())
+                        .into(mImageView);
+            }else{
+                mImageView.setVisibility(View.GONE);
+            }
 
 
         }
@@ -147,6 +154,14 @@ public class ExamActivity extends AppCompatActivity {
                  unregisterReceiver(mLoadQuestionBroadcast);
 
              }
+    }
+
+    public void preExam(View view) {
+        showExam(biz.preQuestion());
+    }
+
+    public void nextExam(View view) {
+        showExam(biz.nextQuestion());
     }
 
 
