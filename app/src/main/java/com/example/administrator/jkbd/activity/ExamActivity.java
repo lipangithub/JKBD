@@ -28,6 +28,7 @@ import java.util.List;
 
 import static android.R.attr.button;
 import static android.media.CamcorderProfile.get;
+import static java.lang.Integer.parseInt;
 import static java.lang.System.load;
 
 /**
@@ -194,6 +195,11 @@ public class ExamActivity extends AppCompatActivity {
                 mImageView.setVisibility(View.GONE);
             }
             resetOptions();
+           String userAnswer= question.getUserAnswer();
+            if (userAnswer!=null && !userAnswer.equals("")){
+              int userCB =  Integer.parseInt(userAnswer)-1;
+                cbs[userCB].setChecked(true);
+            }
         }
     }
 
