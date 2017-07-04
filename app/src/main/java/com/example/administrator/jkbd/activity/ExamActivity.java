@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -25,6 +26,7 @@ import com.example.administrator.jkbd.bean.Question;
 import com.example.administrator.jkbd.bean.item;
 import com.example.administrator.jkbd.biz.ExamBiz;
 import com.example.administrator.jkbd.biz.IExamBiz;
+import com.example.administrator.jkbd.view.QuestionAdapter;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -52,6 +54,8 @@ public class ExamActivity extends AppCompatActivity {
     ImageView mImageView;
     ProgressBar dialog;
     IExamBiz biz;
+    QuestionAdapter mAdapter;
+    Gallery mGallery;
     boolean isLoadExamInfo=false;
     boolean isLoadQuestions=false;
 
@@ -100,6 +104,7 @@ public class ExamActivity extends AppCompatActivity {
         tvExamInfo = (TextView) findViewById(R.id.tv_examinfo);
         tvExamTitle = (TextView) findViewById(R.id.tv_exam_title);
         tvNo= (TextView) findViewById(R.id.tv_exam_no);
+        mGallery= (Gallery) findViewById(R.id.gallery);
         tv0p1 = (TextView) findViewById(R.id.tv_op1);
         tv0p2 = (TextView) findViewById(R.id.tv_op2);
         tv0p3 = (TextView) findViewById(R.id.tv_op3);
@@ -166,10 +171,8 @@ public class ExamActivity extends AppCompatActivity {
                     showData(item);
                     initTimer(item);
                 }
-
-
+                initGallerry();
                     showExam(biz.getExam());
-
             }else{
                 layoutLoading.setEnabled(true);
                 dialog.setVisibility(View.GONE);
@@ -177,6 +180,12 @@ public class ExamActivity extends AppCompatActivity {
 
             }
         }
+
+    }
+
+    private void initGallerry() {
+        mAdapter=new QuestionAdapter(this);
+        mGallery.setAdapter(mAdapter);
 
     }
 
