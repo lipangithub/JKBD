@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ActivityChooserView;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Gallery;
@@ -186,6 +187,15 @@ public class ExamActivity extends AppCompatActivity {
     private void initGallerry() {
         mAdapter=new QuestionAdapter(this);
         mGallery.setAdapter(mAdapter);
+        mGallery.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.e("gallery","gallery item position="+position);
+                saveUserAnswer();
+                showExam(biz.getExam(position));
+            }
+        });
 
     }
 
