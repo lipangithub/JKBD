@@ -13,5 +13,6 @@ public interface IExamBiz {
     Question nextQuestion();
     Question preQuestion();
     int commitExam();
+    int commitExam1();//自己写的
     String getExamIndex();
 }

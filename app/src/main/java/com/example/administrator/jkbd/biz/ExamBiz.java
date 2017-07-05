@@ -88,6 +88,22 @@ public class ExamBiz implements IExamBiz {
     }
 
     @Override
+    public int commitExam1() {//自己写的
+        int s=0;
+        for (Question question : questionList) {
+            String userAnswer = question.getUserAnswer();
+            if (userAnswer!=null && !userAnswer.equals("")){
+                if(question.getAnswer().equals(userAnswer)){
+                    s=1;
+                }else{
+                    s=0;
+                }
+            }
+        }
+        return s;
+    }
+
+    @Override
     public String getExamIndex() {
         return (examIndex+1)+".";
     }

@@ -5,24 +5,22 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.jkbd.ExamApplication;
 import com.example.administrator.jkbd.R;
 import com.example.administrator.jkbd.bean.Question;
+import com.example.administrator.jkbd.biz.IExamBiz;
 
 import java.util.List;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
-import static android.view.View.inflate;
 
 /**
  * Created by 李攀 on 2017/7/4.
  */
 
 public class QuestionAdapter extends BaseAdapter {
+    //IExamBiz biz;//自己写的
     Context mContext;
     List<Question> examList;
 
@@ -52,11 +50,14 @@ public class QuestionAdapter extends BaseAdapter {
         TextView tvNo= (TextView) view.findViewById(R.id.tv_no);
         ImageView ivQuestion= (ImageView) view.findViewById(R.id.iv_question);
         String ua=examList.get(position).getUserAnswer();
+        String ra=examList.get(position).getAnswer();
         Log.e("adapter","examList.get(position)="+examList.get(position));
+        //int s=biz.commitExam1();//自己写的
         if (ua!=null && !ua.equals("")){
-            ivQuestion.setImageResource(R.mipmap.answer24x24);
+
+                ivQuestion.setImageResource(ua.equals(ra)?R.mipmap.answer24x24:R.mipmap.error);
         }else {
-            ivQuestion.setImageResource(R.mipmap.ques24x24);
+            ivQuestion.setImageResource(R.mipmap.unknown24x24);
         }
 
         tvNo.setText("第"+(position+1)+"题");
